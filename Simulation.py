@@ -1,5 +1,3 @@
-import time
-
 import pygame
 from pygame import *
 
@@ -26,13 +24,13 @@ class Simulation:
         # to config
         sun_radius = 10
         # to config
-        weight = 50
+        weight = 100
         sun = Planet(self.CENTER_X, self.CENTER_Y, sun_radius, "yellow", 0, 0, weight)
 
         # to config
         planet_radius = 5
         # to config
-        position_planet_x = 100
+        position_planet_x = 150
         # to config
         position_planet_y = 290
         # to config
@@ -40,7 +38,7 @@ class Simulation:
         # to config
         speed_x = 0.1
         # to config
-        speed_y = 0.15
+        speed_y = 0.4
 
         planet_sheet = Surface((self.PLANET_WIDTH, self.PLANET_HEIGHT))
         planet = Planet(position_planet_x, position_planet_y, planet_radius, "green", speed_x, speed_y, weight)
@@ -48,9 +46,9 @@ class Simulation:
         # to config
         comet_radius = 3
         # to config
-        position_comet_x = 200
+        position_comet_x = 30
         # to config
-        position_comet_y = 290
+        position_comet_y = 400
         # to config
         weight = 1
         # to config
@@ -64,7 +62,7 @@ class Simulation:
         self.initialize(sun, planet, planet_sheet, comet, comet_sheet, screen, sheet)
 
         planets = [planet, comet, sun]
-        dt = 0.5
+        dt = 0.2
         fly_obj_box = FlyObjBox()
         while self.FLAG:
             for e in pygame.event.get():
