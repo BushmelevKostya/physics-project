@@ -23,7 +23,7 @@ class Simulation:
         # to config
         sun_radius = 10
         # to config
-        weight = 5000
+        weight = 7000
         sun = Sun(self.CENTER_X, self.CENTER_Y, sun_radius, weight)
 
         # to config
