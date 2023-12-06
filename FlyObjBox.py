@@ -21,9 +21,11 @@ class FlyObjBox:
         self.m.append(planet.weight)
 
     def calcAcceleration(self, i, N):
+        scale = 8.9 / 12 * (10 ** 8)
+        print(scale, 1.392e8 / sqrt(10))
         for j in range(0, N):
             if i != j:
-                r = sqrt((self.x[j] - self.x[i]) ** 2 + (self.y[j] - self.y[i]) ** 2) * 1.392e8 / sqrt(10)
+                r = sqrt((self.x[j] - self.x[i]) ** 2 + (self.y[j] - self.y[i]) ** 2) * scale
                 F = self.G * self.m[i] * self.m[j] / r ** 2
                 ##
                 print("distance: ", r)
@@ -33,8 +35,8 @@ class FlyObjBox:
                 # exit(-1)
 
                 ##
-                cosine = 1.392e8 / sqrt(10) * (self.x[j] - self.x[i]) / r
-                sinus = 1.392e8 / sqrt(10) * (self.y[j] - self.y[i]) / r
+                cosine = scale * (self.x[j] - self.x[i]) / r
+                sinus = scale * (self.y[j] - self.y[i]) / r
                 F_x = F * cosine
                 F_y = F * sinus
                 self.f_x += F_x
