@@ -15,8 +15,8 @@ class FlyObjBox:
     def set_planets(self, planets):
         self.planets = planets
 
-    def calc_acceleration(self, i, N):
-        for j in range(0, N):
+    def calc_acceleration(self, i, count_planets):
+        for j in range(0, count_planets):
             if i != j:
                 r = sqrt((self.planets[j].position_x - self.planets[i].position_x) ** 2 +
                          (self.planets[j].position_y - self.planets[i].position_y) ** 2) * 1.392e8 / sqrt(10)

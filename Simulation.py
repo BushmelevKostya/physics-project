@@ -11,7 +11,7 @@ class Simulation:
     timer = pygame.time.Clock()
 
     def start(self):
-        params = self.getParams()
+        params = self.get_params()
 
         # window parameters
         width = params["display"]["width"]
@@ -73,7 +73,20 @@ class Simulation:
                 screen.blit(planet.sheet, (planet.position_x, planet.position_y))
             pygame.display.update()
 
-    def getParams(self):
+    def initialize(self, planets, sheet, space_color, width, height):
+        pygame.init()
+        pygame.display.set_caption("Simulation of gravitational interaction")
+
+        sheet.fill(Color(space_color))
+
+        for planet in planets[1:]:
+            self.__draw_planet(planet, width, height)
+
+        self.__draw_planet(planets[0], 0, 0)
+        self.__draw_sun(sheet, planets[0])
+
+    @staticmethod
+    def get_params():
         file_path = "config.yml"
         with open(file_path, 'r') as file:
             data = yaml.safe_load(file)
@@ -88,21 +101,11 @@ class Simulation:
             return "comet"
         return "planet-" + str(num - 1)
 
-    def initialize(self, planets, sheet, space_color, width, height):
-        pygame.init()
-        pygame.display.set_caption("Simulation of gravitational interaction")
-
-        sheet.fill(Color(space_color))
-
-        for planet in planets[1:]:
-            self.__drawPlanet(planet, space_color, width, height)
-
-        self.__drawPlanet(planets[0], space_color, 0, 0)
-        self.__drawSun(sheet, planets[0])
-
-    def __drawSun(self, sheet, sun):
+    @staticmethod
+    def __draw_sun(sheet, sun):
         draw.circle(sheet, Color(sun.color), (sun.position_x, sun.position_y), sun.radius)
 
-    def __drawPlanet(self, planet, space_color, width, height):
+    @staticmethod
+    def __draw_planet(planet, width, height):
         draw.circle(planet.sheet, Color(planet.color), (width // 2, height // 2), planet.radius)
         planet.sheet.set_colorkey((0, 0, 0, 0))
