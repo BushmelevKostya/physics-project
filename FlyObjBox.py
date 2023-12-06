@@ -1,13 +1,14 @@
 from math import *
 
-
 class FlyObjBox:
+
+    # consts
+    G = 6.674 * 10 ** -11
+    scale = 8.9 / 12 * (10 ** 8)
 
     planets = []
     f_x = 0
     f_y = 0
-
-    G = 6.674 * 10**-11
 
     def add_planet(self, planet):
         self.planets.append(planet)
@@ -19,7 +20,7 @@ class FlyObjBox:
         for j in range(0, count_planets):
             if i != j:
                 r = sqrt((self.planets[j].position_x - self.planets[i].position_x) ** 2 +
-                         (self.planets[j].position_y - self.planets[i].position_y) ** 2) * 1.392e8 / sqrt(10)
+                         (self.planets[j].position_y - self.planets[i].position_y) ** 2) * self.scale
                 F = self.G * self.planets[i].weight * self.planets[j].weight / r ** 2
                 ##
                 print("distance: ", r)
@@ -29,8 +30,8 @@ class FlyObjBox:
                 # exit(-1)
 
                 ##
-                cosine = 1.392e8 / sqrt(10) * (self.planets[j].position_x - self.planets[i].position_x) / r
-                sinus = 1.392e8 / sqrt(10) * (self.planets[j].position_y - self.planets[i].position_y) / r
+                cosine = self.scale * (self.planets[j].position_x - self.planets[i].position_x) / r
+                sinus = self.scale * (self.planets[j].position_y - self.planets[i].position_y) / r
                 F_x = F * cosine
                 F_y = F * sinus
                 self.f_x += F_x

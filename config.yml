@@ -1,5 +1,5 @@
-count: 4
-dt: 5
+count: 3
+dt: 1
 
 display:
   width: 1200
@@ -15,38 +15,27 @@ sun:
 #  speed_y: 0.4
   speed_y: 0
 
-comet:
-  width: 20
-  height: 20
-  radius: 3
-  color: "red"
-  x: 300
-  y: 400
-#  weight: 1
-  weight: 3_300_000_000_000
-  speed_x: 0
-  speed_y: 0.4
-
 planet-1:
   width: 20
   height: 20
   radius: 5
   color: "green"
   x: 300
-  y: 300
-#  weight: 2
-  weight: 5_972_000_000_000_000_000_000
-  speed_x: 0
-  speed_y: 0.4
-
-planet-2:
-  width: 20
-  height: 20
-  radius: 5
-  color: "purple"
-  x: 400
   y: 400
 #  weight: 2
   weight: 5_972_000_000_000_000_000_000
-  speed_x: 0
-  speed_y: 0.4
+  speed_x: 0.03
+  speed_y: 0.15
+
+
+comet:
+  width: 20
+  height: 20
+  radius: 3
+  color: "red"
+  x: 300
+  y: 150
+#  weight: 1
+  weight: 3_300
+  speed_x: 0.1
+  speed_y: 0.35
