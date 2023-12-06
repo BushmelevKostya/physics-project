@@ -89,6 +89,7 @@ class Simulation:
                 fly_obj_box.f_y = 0
 
             fly_obj_box.reset()
+
             screen.blit(sheet, (0, 0))
             screen.blit(planet_sheet, (planets[0].position_x, planets[0].position_y))
             screen.blit(comet_sheet, (planets[1].position_x, planets[1].position_y))
@@ -115,5 +116,5 @@ class Simulation:
         draw.circle(sheet, Color(sun.color), (sun.position_x, sun.position_y), sun.radius)
 
     def __drawPlanet(self, planet_sheet, planet, space_color, width, height):
-        planet_sheet.fill(Color(space_color))
         draw.circle(planet_sheet, Color(planet.color), (width // 2, height // 2), planet.radius)
+        planet_sheet.set_colorkey((0, 0, 0, 0))

@@ -29,8 +29,8 @@ comet:
   height: 20
   radius: 3
   color: "red"
-  x: 270
-  y: 270
+  x: 200
+  y: 200
   weight: 1
   speed_x: 0
   speed_y: 0.4
