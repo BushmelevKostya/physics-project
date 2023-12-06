@@ -9,8 +9,12 @@ class FlyObjBox:
     y = []
     f_x = 0
     f_y = 0
+<<<<<<< Updated upstream
     # change this constant
     G = 1
+=======
+    G = 6.674 * 10**-11
+>>>>>>> Stashed changes
 
     def addPlanet(self, planet):
         self.v_x.append(planet.speed_x)
@@ -24,8 +28,13 @@ class FlyObjBox:
             if i != j:
                 r = sqrt((self.x[j] - self.x[i]) ** 2 + (self.y[j] - self.y[i]) ** 2)
                 F = self.G * self.m[i] * self.m[j] / r ** 2
+<<<<<<< Updated upstream
                 cosine = (self.x[j] - self.x[i]) / r
                 sinus = (self.y[j] - self.y[i]) / r
+=======
+                cosine = 1.392e8 / sqrt(10) * (self.x[j] - self.x[i]) / r
+                sinus = 1.392e8 / sqrt(10) * (self.y[j] - self.y[i]) / r
+>>>>>>> Stashed changes
                 F_x = F * cosine
                 F_y = F * sinus
                 self.f_x += F_x
