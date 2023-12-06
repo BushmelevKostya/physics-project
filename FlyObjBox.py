@@ -9,8 +9,9 @@ class FlyObjBox:
     y = []
     f_x = 0
     f_y = 0
-    # change this constant
-    G = 1
+    # change this constant (until = 1)
+    G = 6.674 * 10**-11
+    # G = 1
 
     def addPlanet(self, planet):
         self.v_x.append(planet.speed_x)
@@ -22,16 +23,25 @@ class FlyObjBox:
     def calcAcceleration(self, i, N):
         for j in range(0, N):
             if i != j:
-                r = sqrt((self.x[j] - self.x[i]) ** 2 + (self.y[j] - self.y[i]) ** 2)
+                r = sqrt((self.x[j] - self.x[i]) ** 2 + (self.y[j] - self.y[i]) ** 2) * 1.392e8 / sqrt(10)
                 F = self.G * self.m[i] * self.m[j] / r ** 2
-                cosine = (self.x[j] - self.x[i]) / r
-                sinus = (self.y[j] - self.y[i]) / r
+                ##
+                print("distance: ", r)
+                print("first x: ", self.x[j], "y: ", self.y[j])
+                print("second x: ", self.x[i], "y: ", self.y[i])
+                print("F: ", F)
+                # exit(-1)
+
+                ##
+                cosine = 1.392e8 / sqrt(10) * (self.x[j] - self.x[i]) / r
+                sinus = 1.392e8 / sqrt(10) * (self.y[j] - self.y[i]) / r
                 F_x = F * cosine
                 F_y = F * sinus
                 self.f_x += F_x
                 self.f_y += F_y
         a_x = self.f_x / self.m[i]
         a_y = self.f_y / self.m[i]
+        print("body a_y: ", a_y, "a_x: ", a_x)
         return a_x, a_y
 
     def calcSpeed(self, i, a_x, a_y, dt):
