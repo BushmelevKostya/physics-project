@@ -72,13 +72,13 @@ class Simulation:
             x = [0, 0]
             y = [0, 0]
 
-            fly_obj_box.addPlanet(planets[0])
-            fly_obj_box.addPlanet(planets[1])
-            fly_obj_box.addPlanet(planets[2])
+            fly_obj_box.add_planet(planets[0])
+            fly_obj_box.add_planet(planets[1])
+            fly_obj_box.add_planet(planets[2])
             for i in range(0, N - 1):
-                a_x, a_y = fly_obj_box.calcAcceleration(i, N)
-                v_x, v_y = fly_obj_box.calcSpeed(i, a_x, a_y, dt)
-                x[i], y[i] = fly_obj_box.calcPosition(i, v_x, v_y, dt)
+                a_x, a_y = fly_obj_box.calc_acceleration(i, N)
+                v_x, v_y = fly_obj_box.calc_speed(i, a_x, a_y, dt)
+                x[i], y[i] = fly_obj_box.calc_position(i, v_x, v_y, dt)
 
                 planets[i].set_speed_x(v_x)
                 planets[i].set_speed_y(v_y)
