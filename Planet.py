@@ -3,7 +3,8 @@ from math import *
 
 class Planet:
 
-    def __init__(self, x, y, radius, color, speed_x, speed_y, weight):
+    def __init__(self, sheet, x, y, radius, color, speed_x, speed_y, weight):
+        self.sheet = sheet
         self.radius = radius
         self.position_x = x
         self.position_y = y

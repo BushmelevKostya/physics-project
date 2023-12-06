@@ -13,54 +13,34 @@ class Simulation:
     def start(self):
         params = self.getParams()
 
+        # window parameters
         width = params["display"]["width"]
         height = params["display"]["height"]
+        space_color = params["display"]["color"]
         main_display = (width, height)
         screen = pygame.display.set_mode(main_display)
-
         sheet = Surface(main_display)
 
-        center_x = width / 2
-        center_y = height / 2
-        radius = params["sun"]["radius"]
-        col = params["sun"]["color"]
-        speed_x = params["sun"]["speed_x"]
-        speed_y = params["sun"]["speed_y"]
-        weight = params["sun"]["weight"]
+        count_planets = params["count"]
+        planets = []
 
-        sun = Planet(center_x, center_y, radius, col, speed_x, speed_y, weight)
+        for num_planet in range(count_planets):
+            name_planet = self.get_name_planet(num_planet)
+            pos_x = width / 2 if name_planet == "sun" else params[name_planet]["x"]
+            pos_y = height / 2 if name_planet == "sun" else params[name_planet]["y"]
+            if name_planet != "sun":
+                width = params[name_planet]["width"]
+                height = params[name_planet]["height"]
+            radius = params[name_planet]["radius"]
+            col = params[name_planet]["color"]
+            speed_x = params[name_planet]["speed_x"]
+            speed_y = params[name_planet]["speed_y"]
+            weight = params[name_planet]["weight"]
+            planet_sheet = Surface((width, height))
+            planets.append(Planet(planet_sheet, pos_x, pos_y, radius, col, speed_x, speed_y, weight))
 
-        width = params["planet-1"]["width"]
-        height = params["planet-1"]["height"]
-        radius = params["planet-1"]["radius"]
-        col = params["planet-1"]["color"]
-        x = params["planet-1"]["x"]
-        y = params["planet-1"]["y"]
-        speed_x = params["planet-1"]["speed_x"]
-        speed_y = params["planet-1"]["speed_y"]
-        weight = params["planet-1"]["weight"]
+        self.initialize(planets, sheet, space_color, width, height)
 
-        planet_sheet = Surface((width, height))
-        planet = Planet(x, y, radius, col, speed_x, speed_y, weight)
-
-        width = params["comet"]["width"]
-        height = params["comet"]["height"]
-        radius = params["comet"]["radius"]
-        col = params["comet"]["color"]
-        x = params["comet"]["x"]
-        y = params["comet"]["y"]
-        speed_x = params["comet"]["speed_x"]
-        speed_y = params["comet"]["speed_y"]
-        weight = params["comet"]["weight"]
-
-        comet_sheet = Surface((width, height))
-        comet = Planet(x, y, radius, col, speed_x, speed_y, weight)
-
-        space_color = params["display"]["color"]
-        self.initialize(sun, planet, planet_sheet, comet, comet_sheet, sheet, space_color, width, height)
-
-        N = params["count"]
-        planets = [planet, comet, sun]
         dt = params["dt"]
         fly_obj_box = FlyObjBox()
         while self.FLAG:
@@ -69,14 +49,12 @@ class Simulation:
                     self.FLAG = False
                     break
 
-            x = [0, 0]
-            y = [0, 0]
+            x = [0] * len(planets)
+            y = [0] * len(planets)
 
-            fly_obj_box.add_planet(planets[0])
-            fly_obj_box.add_planet(planets[1])
-            fly_obj_box.add_planet(planets[2])
-            for i in range(0, N - 1):
-                a_x, a_y = fly_obj_box.calc_acceleration(i, N)
+            fly_obj_box.set_planets(planets)
+            for i in range(0, count_planets):
+                a_x, a_y = fly_obj_box.calc_acceleration(i, count_planets)
                 v_x, v_y = fly_obj_box.calc_speed(i, a_x, a_y, dt)
                 x[i], y[i] = fly_obj_box.calc_position(i, v_x, v_y, dt)
 
@@ -91,8 +69,8 @@ class Simulation:
             fly_obj_box.reset()
 
             screen.blit(sheet, (0, 0))
-            screen.blit(planet_sheet, (planets[0].position_x, planets[0].position_y))
-            screen.blit(comet_sheet, (planets[1].position_x, planets[1].position_y))
+            for planet in planets:
+                screen.blit(planet.sheet, (planet.position_x, planet.position_y))
             pygame.display.update()
 
     def getParams(self):
@@ -102,19 +80,29 @@ class Simulation:
 
         return data
 
-    def initialize(self, sun, planet, planet_sheet, comet, comet_sheet, sheet, space_color, width, height):
+    @staticmethod
+    def get_name_planet(num):
+        if num == 0:
+            return "sun"
+        elif num == 1:
+            return "comet"
+        return "planet-" + str(num - 1)
+
+    def initialize(self, planets, sheet, space_color, width, height):
         pygame.init()
         pygame.display.set_caption("Simulation of gravitational interaction")
 
         sheet.fill(Color(space_color))
 
-        self.__drawSun(sheet, sun)
-        self.__drawPlanet(planet_sheet, planet, space_color, width, height)
-        self.__drawPlanet(comet_sheet, comet, space_color, width, height)
+        for planet in planets[1:]:
+            self.__drawPlanet(planet, space_color, width, height)
+
+        self.__drawPlanet(planets[0], space_color, 0, 0)
+        self.__drawSun(sheet, planets[0])
 
     def __drawSun(self, sheet, sun):
         draw.circle(sheet, Color(sun.color), (sun.position_x, sun.position_y), sun.radius)
 
-    def __drawPlanet(self, planet_sheet, planet, space_color, width, height):
-        draw.circle(planet_sheet, Color(planet.color), (width // 2, height // 2), planet.radius)
-        planet_sheet.set_colorkey((0, 0, 0, 0))
+    def __drawPlanet(self, planet, space_color, width, height):
+        draw.circle(planet.sheet, Color(planet.color), (width // 2, height // 2), planet.radius)
+        planet.sheet.set_colorkey((0, 0, 0, 0))

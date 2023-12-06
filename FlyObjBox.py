@@ -12,6 +12,9 @@ class FlyObjBox:
     def add_planet(self, planet):
         self.planets.append(planet)
 
+    def set_planets(self, planets):
+        self.planets = planets
+
     def calc_acceleration(self, i, N):
         for j in range(0, N):
             if i != j:
