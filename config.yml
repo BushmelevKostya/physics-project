@@ -1,5 +1,5 @@
 count: 3
-dt: 2
+dt: 1
 
 display:
   width: 1200
@@ -20,12 +20,12 @@ planet-1:
   height: 20
   radius: 5
   color: "green"
-  x: 500
+  x: 300
   y: 400
 #  weight: 2
   weight: 5_972_000_000_000_000_000_000
-  speed_x: 0.02
-  speed_y: -0.3
+  speed_x: 0.03
+  speed_y: 0.15
 
 
 comet:
@@ -37,5 +37,5 @@ comet:
   y: 150
 #  weight: 1
   weight: 3_300
-  speed_x: 0
-  speed_y: 0.25
+  speed_x: 0.1
+  speed_y: 0.35
