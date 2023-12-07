@@ -1,0 +1,102 @@
+count: 9
+dt: 0.015
+
+display:
+  width: 1200
+  height: 800
+  color: "#000022"
+
+sun:
+  radius: 10
+  weight: 1_989_000_000_000_000_000_000_000_000_000
+  color: "yellow"
+  speed_x: 0
+  speed_y: 0
+
+comet:
+  width: 20
+  height: 20
+  radius: 5
+  color: "white"
+  x: 650
+  y: 400
+  weight: 329_000_000_000_000_000_000_000_000
+  speed_x: 0
+  speed_y: 23
+
+planet-1:
+  width: 20
+  height: 20
+  radius: 5
+  color: "orange"
+  x: 700
+  y: 400
+  weight: 102_400_000_000_000_000_000_000_000
+  speed_x: 0
+  speed_y: 16
+
+planet-2:
+  width: 20
+  height: 20
+  radius: 5
+  color: "green"
+  x: 750
+  y: 400
+  weight:  4_867_000_000_000_000_000_000_000
+  speed_x: 0
+  speed_y: 13
+
+planet-3:
+  width: 20
+  height: 20
+  radius: 5
+  color: "brown"
+  x: 800
+  y: 400
+  weight:  5_972_000_000_000_000_000_000_000
+  speed_x: 0
+  speed_y: 11
+
+planet-4:
+  width: 20
+  height: 20
+  radius: 5
+  color: "gold"
+  x: 850
+  y: 400
+  weight: 639_000_000_000_000_000_000_000
+  speed_x: 0
+  speed_y: 10
+
+planet-5:
+  width: 20
+  height: 20
+  radius: 5
+  color: "grey"
+  x: 900
+  y: 400
+  weight: 4_867_000_000_000_000_000_000_000
+  speed_x: 0
+  speed_y: 9.1
+
+planet-6:
+  width: 20
+  height: 20
+  radius: 5
+  color: "blue"
+  x: 950
+  y: 400
+  weight: 1_898_000_000_000_000_000_000_000_000
+  speed_x: 0
+  speed_y: 8.35
+
+planet-7:
+  width: 20
+  height: 20
+  radius: 5
+  color: "darkblue"
+  x: 1000
+  y: 400
+  weight: 86_810_000_000_000_000_000_000_000
+  speed_x: 0
+  speed_y: 7.7

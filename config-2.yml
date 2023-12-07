@@ -1,0 +1,36 @@
+count: 3
+dt: 0.4
+
+display:
+  width: 1200
+  height: 800
+  color: "#000022"
+
+sun:
+  radius: 10
+  weight: 1_989_000_000_000_000_000_000_000_000
+  color: "yellow"
+  speed_x: 0
+  speed_y: 0
+
+comet:
+  width: 20
+  height: 20
+  radius: 3
+  color: "red"
+  x: 20
+  y: 198
+  weight: 3_300
+  speed_x: 0.4
+  speed_y: 0
+
+planet-1:
+  width: 20
+  height: 20
+  radius: 5
+  color: "green"
+  x: 700
+  y: 400
+  weight: 700_000_000_000_000_000_000_000_000
+  speed_x: 0
+  speed_y: -0.5
